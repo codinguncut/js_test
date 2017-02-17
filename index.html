@@ -10,7 +10,7 @@
     req = window.location.href.match(/.*\?(.*)/)[1];
     if (req) {
         elt = document.getElementById('result');    
-        var res = encode_ascii85(hex_md5(req).slice(0, 8));
+        var res = encode_ascii85(hex_md5(req));
         elt.append(res);
     }
 </script>
