@@ -1,15 +1,18 @@
 <html>
 <meta charset="UTF-8">
 
-<textarea id="result" style="font-size: 40">
-</textarea>
+<pre id="result" style="font-size: 40">
+</pre>
 
 <script src="sha1.min.js"></script>
 <script src="lib.js"></script>
 <script>
-    req = window.location.href.match(/.*\?(.*)/)[1];
-    if (req) {
-        doit(req);
+    var match = window.location.href.match(/.*\?(.*)/);
+    if (match.length > 1) {
+        var req = match[1];
+        if (req) {
+            doit(req);
+        }
     }
 </script>
 
