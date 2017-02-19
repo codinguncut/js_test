@@ -1,14 +1,19 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
+var vm = require('vm')
 
-sha1 = fs.readFileSync('sha1.min.js','utf8');
-eval(sha1);
+String.prototype.constructor = false;
+
+var sha1 = require('sha1');
+function sha1_func(string) {
+    return sha1(string, {asBytes: true});
+}
 
 b85 = fs.readFileSync('lib.js','utf8');
 eval(b85);
 
-if (process.argv.length > 1) {
+if (process.argv.length > 2) {
     var string = process.argv[2];
     var res = doit(string);
     console.log(res);

@@ -27,18 +27,19 @@ function bytes_to_words(bytes) {
 
 
 function doit(string) {
-    var dig = sha1.digest(string);
+    var dig = sha1_func(string);
     var res = bytes_to_words(dig);
     var pw = z85(res);
     var result = '0,aA'+pw.slice(0, 12);
 
-    if (document) {
+    try {
         elt = document.getElementById('result');    
         elt.innerText = result;
         elt.focus();
 	    elt.select();
 		Copied = window.getSelection(); //.createTextRange();
 		document.execCommand("Copy");
+    } catch (ReferenceError) {
     }
     return result;
 }

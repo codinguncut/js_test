@@ -5,6 +5,11 @@
 </textarea>
 
 <script src="sha1.min.js"></script>
+<script>
+    function sha1_func(string) {
+        return sha1.digest(string);
+    }
+</script>
 <script src="lib.js"></script>
 <script>
     var match = window.location.href.match(/.*\?(.*)/);
