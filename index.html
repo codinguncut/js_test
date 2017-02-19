@@ -4,13 +4,13 @@
 <div id="result" style="font-size: 40">
 </div>
 
-<script src="md5-min.js"></script>
+<script src="sha1.min.js"></script>
 <script src="lib.js"></script>
 <script>
     req = window.location.href.match(/.*\?(.*)/)[1];
     if (req) {
+        var res = doit(req);
         elt = document.getElementById('result');    
-        var res = encode_ascii85(hex_md5(req)).slice(0, 16);
         elt.append(res);
     }
 </script>

@@ -1,3 +1,37 @@
+function z85(words) {
+    var res = [];
+    var abc = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.-:+=^!/*?&<>()[]{}@%$#';
+    for (var i in words) {
+        var x = []
+        for (var j = 0; j < 5; j++) {
+            x.push(abc[Math.abs(words[i] % 85)]);
+            words[i] = (words[i] / 85)>>0;
+        }
+        res.push(x.reverse().join(''));
+    }
+    return res.join('');
+}
+
+function bytes_to_words(bytes) {
+    var res = [];
+    for (var i = 0; i < 4; i++) {
+        var x = 0;
+        for (var j = 0; j < 4; j++) {
+            x += bytes[i*4+j]<<((3-j)*8);
+        }
+        res.push(x);
+    }
+    return res;
+}
+
+function doit(string) {
+    var dig = sha1.digest(string);
+    var res = bytes_to_words(dig);
+    var pw = z85(res);
+    return '0,aA'+pw.slice(0, 12);
+}
+
+/*
 function encode_ascii85(a) {
   var b, c, d, e, f, g, h, i, j, k;
   for (!/[^\x00-\xFF]/.test(a), b = "\x00\x00\x00\x00".slice(a.length % 4 || 4), a += b, 
@@ -8,3 +42,4 @@ function encode_ascii85(a) {
     for (var c = b; c > 0; c--) a.pop();
   }(c, b.length), String.fromCharCode.apply(String, c);
 }
+*/
