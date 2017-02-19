@@ -12,6 +12,7 @@ function z85(words) {
     return res.join('');
 }
 
+
 function bytes_to_words(bytes) {
     var res = [];
     for (var i = 0; i < 4; i++) {
@@ -24,11 +25,22 @@ function bytes_to_words(bytes) {
     return res;
 }
 
+
 function doit(string) {
     var dig = sha1.digest(string);
     var res = bytes_to_words(dig);
     var pw = z85(res);
-    return '0,aA'+pw.slice(0, 12);
+    var result = '0,aA'+pw.slice(0, 12);
+
+    if (document) {
+        elt = document.getElementById('result');    
+        elt.innerText = result;
+        elt.focus();
+	    elt.select();
+		Copied = window.getSelection(); //.createTextRange();
+		document.execCommand("Copy");
+    }
+    return result;
 }
 
 /*

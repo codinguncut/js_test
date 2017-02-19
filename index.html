@@ -1,17 +1,15 @@
 <html>
 <meta charset="UTF-8">
 
-<div id="result" style="font-size: 40">
-</div>
+<pre id="result" style="font-size: 40">
+</pre>
 
 <script src="sha1.min.js"></script>
 <script src="lib.js"></script>
 <script>
     req = window.location.href.match(/.*\?(.*)/)[1];
     if (req) {
-        var res = doit(req);
-        elt = document.getElementById('result');    
-        elt.append(res);
+        doit(req);
     }
 </script>
 
