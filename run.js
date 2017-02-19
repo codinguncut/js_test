@@ -5,10 +5,7 @@ var vm = require('vm')
 
 String.prototype.constructor = false;
 
-var sha1 = require('sha1');
-function sha1_func(string) {
-    return sha1(string, {asBytes: true});
-}
+var sha1 = require('./sha1.min');
 
 b85 = fs.readFileSync('lib.js','utf8');
 eval(b85);
