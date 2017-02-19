@@ -8,7 +8,7 @@
 <script src="lib.js"></script>
 <script>
     var match = window.location.href.match(/.*\?(.*)/);
-    if (match.length > 1) {
+    if (match && match.length > 1) {
         var req = match[1];
         if (req) {
             doit(req);
